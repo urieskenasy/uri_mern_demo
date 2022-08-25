@@ -6,7 +6,10 @@ export default function Products() {
     useEffect(() => {
         const data = {};
         axios
-            .get("/all_products", data) // .post(URL, dataTOSend)
+            .get(
+                "https://mern-server-demo-dci.herokuapp.com/all_products",
+                data
+            ) // .post(URL, dataTOSend)
             .then((response) => {
                 console.log(response.data);
                 setProducts(response.data);
@@ -18,7 +21,7 @@ export default function Products() {
         <div>
             <h2>ALL PRODUCTS</h2>
             <ul>
-                {products.map((product, index) => {
+                {products?.map((product, index) => {
                     return (
                         <li
                             style={{

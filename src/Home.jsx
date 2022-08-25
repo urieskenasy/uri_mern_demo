@@ -17,7 +17,10 @@ export default function Home() {
             password,
         };
         axios
-            .post("/user/create/", data) // .post(URL, dataTOSend)
+            .post(
+                "https://mern-server-demo-dci.herokuapp.com/user/create/",
+                data
+            ) // .post(URL, dataTOSend)
             .then((response) => {
                 console.log(response);
                 setMessage(response.data.message);
@@ -25,18 +28,28 @@ export default function Home() {
     };
     // login check
     const loginCheck = () => {
-        axios.post("/user/login", { email, password }).then((response) => {
-            setMessage(response.data.message);
-            setSpecificUsersProducts(response.data.products);
-            setUserID(response.data.user._id);
-        });
+        axios
+            .post("https://mern-server-demo-dci.herokuapp.com/user/login", {
+                email,
+                password,
+            })
+            .then((response) => {
+                setMessage(response.data.message);
+                setSpecificUsersProducts(response.data.products);
+                setUserID(response.data.user._id);
+            });
     };
 
     // add product for this logged in user using faker data
     const addProduct = () => {
-        axios.get("/products/add/" + userID).then((response) => {
-            setMessage(response.data);
-        });
+        axios
+            .get(
+                "https://mern-server-demo-dci.herokuapp.com/products/add/" +
+                    userID
+            )
+            .then((response) => {
+                setMessage(response.data);
+            });
     };
     return (
         <>
